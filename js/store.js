@@ -81,43 +81,7 @@
 		callback = callback || function () {};
 
 		// Generate an ID
-		var newId = Date.now(); 
-		//var charset = Date.now().toString();
-		//var charset = "0123456789";
-
-		/*
-		newId += todos.length;
-
-		for (var i = 0; i < 6; i ++) {
-			newId += 0;
-		}
-		*/
-
-		/*
-		for (var i = 0; i < 6; i++) {
-			if(i = 0) {
-				newId += todos.length.toString();
-			} else {
-				newId += '0';
-			}
-		}//time?
-		*/
-		/*
-		for (var i = 0; i < 6; i++) {
-			newId += charset.charAt(Math.floor(Math.random() * charset.length));
-		}
-		*/
-		
-
-		/*
-        for (var i = 0; i < 6; i++) {
-     		newId += charset.charAt(Math.floor(Math.random() * charset.length));
-		}
-		*/
-		
-		
-		
-		
+	    var newId = Date.now();
 
 		// If an ID was actually given, find the item and update each property
 		if (id) {
