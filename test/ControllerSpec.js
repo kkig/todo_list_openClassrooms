@@ -94,8 +94,9 @@ describe('controller', function () {
 			setUpModel([todo]);
 
 			subject.setView('active');
+			subject._updateFilterState('active');
 
-			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
+			expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
 		});
 
 		it('should show completed entries', function () {
@@ -104,8 +105,9 @@ describe('controller', function () {
 			setUpModel([todo]);
 
 			subject.setView('completed');
+			subject._updateFilterState('completed');
 
-			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
+			expect(view.render).toHaveBeenCalledWith('setFilter', 'completed');
 		});
 	});
 
@@ -191,10 +193,16 @@ describe('controller', function () {
 			setUpModel([todo]);
 
 			subject.setView('');
-			view.trigger('toggleAll', {completed: true});
+			view.trigger('toggleAll', {completed: false});
+			//subject.toggleAll(false);
 			
 			//expect(model.read).toHaveBeenCalledWith({completed: true}, jasmine.any(Function));
-			expect(view.render).toHaveBeenCalledWith('showEntries', { checked: true });
+			//expect(view.render).toHaveBeenCalledWith('showEntries', [{ title: 'my todo', completed: true }]);
+			
+			expect(view.render).toHaveBeenCalledWith('toggleAll', {
+				checked: false
+			});
+			
 		});
 	});
 
@@ -256,6 +264,13 @@ describe('controller', function () {
 	describe('element removal', function () {
 		it('should remove an entry from the model', function () {
 			// TODO: write test
+			var todo = {id: 42, title: 'my todo', completed: true};
+			setUpModel([todo]);
+
+			subject.setView('');
+			view.trigger('itemRemove', {id: 42});
+
+			expect(model.remove).toHaveBeenCalledWith(42, jasmine.any(Function));
 		});
 
 		it('should remove an entry from the view', function () {
