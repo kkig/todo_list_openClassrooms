@@ -102,7 +102,8 @@ describe('controller', function () {
 		it('should show completed entries', function () {
 			// TODO: write test
 			var todo = {title: 'my todo', completed: true};
-			setUpModel([todo]);
+			var todoOne = {title: 'my todo', completed: false};
+			setUpModel([todo, todoOne]);
 
 			subject.setView('completed');
 			subject._updateFilterState('completed');
@@ -169,7 +170,7 @@ describe('controller', function () {
 		var todo = {title: 'my todo', completed: false};
 		setUpModel([todo]);
 
-		subject.setView('activess');
+		subject.setView('active');
 		subject._updateFilterState('active');
 
 		expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
@@ -193,15 +194,16 @@ describe('controller', function () {
 			setUpModel([todo]);
 
 			subject.setView('');
-			view.trigger('toggleAll', {completed: false});
+			view.trigger('toggleAll', {completed: true});
 			//subject.toggleAll(false);
 			
 			//expect(model.read).toHaveBeenCalledWith({completed: true}, jasmine.any(Function));
-			//expect(view.render).toHaveBeenCalledWith('showEntries', [{ title: 'my todo', completed: true }]);
-			
+			expect(view.render).toHaveBeenCalledWith('showEntries', [{ title: 'my todo', completed: false }]);
+			/*
 			expect(view.render).toHaveBeenCalledWith('toggleAll', {
 				checked: false
 			});
+			*/
 			
 		});
 	});
