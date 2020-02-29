@@ -93,7 +93,7 @@ describe('controller', function () {
 			var todo = {title: 'my todo', completed: false};
 			setUpModel([todo]);
 
-			subject.setView('active');
+			subject.setView('#/active');
 			subject._updateFilterState('active');
 
 			expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
@@ -105,7 +105,7 @@ describe('controller', function () {
 			var todoOne = {title: 'my todo', completed: false};
 			setUpModel([todo, todoOne]);
 
-			subject.setView('completed');
+			subject.setView('#/completed');
 			subject._updateFilterState('completed');
 
 			expect(view.render).toHaveBeenCalledWith('setFilter', 'completed');
@@ -135,7 +135,7 @@ describe('controller', function () {
 	it('should check the toggle all button, if all todos are completed', function () {
 		setUpModel([{title: 'my todo', completed: true}]);
 
-		subject.setView('');
+		subject.setView(''); 
 
 		expect(view.render).toHaveBeenCalledWith('toggleAll', {
 			checked: true
