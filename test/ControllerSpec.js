@@ -93,8 +93,8 @@ describe('controller', function () {
 			var todo = {title: 'my todo', completed: false};
 			setUpModel([todo]);
 
-			subject.setView('#/active');
-			subject._updateFilterState('active');
+			subject.setView('/active');
+			//subject._updateFilterState('active');
 
 			expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
 		});
@@ -105,8 +105,8 @@ describe('controller', function () {
 			var todoOne = {title: 'my todo', completed: false};
 			setUpModel([todo, todoOne]);
 
-			subject.setView('#/completed');
-			subject._updateFilterState('completed');
+			subject.setView('/completed');
+			//subject._updateFilterState('completed');
 
 			expect(view.render).toHaveBeenCalledWith('setFilter', 'completed');
 		});
@@ -160,7 +160,7 @@ describe('controller', function () {
 		setUpModel([todo]);
 
 		subject.setView('');
-		subject._updateFilterState('');
+		//subject._updateFilterState('');
 
 		expect(view.render).toHaveBeenCalledWith('setFilter', '');
 	});
@@ -170,8 +170,8 @@ describe('controller', function () {
 		var todo = {title: 'my todo', completed: false};
 		setUpModel([todo]);
 
-		subject.setView('active');
-		subject._updateFilterState('active');
+		subject.setView('/active');
+		//subject._updateFilterState('active');
 
 		expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
 	});
@@ -189,6 +189,7 @@ describe('controller', function () {
 			//expect(model.read).toHaveBeenCalledWith({completed: true}, jasmine.any(Function));
 			
 			/* Rewrite */
+			expect(model.read).toHaveBeenCalledWith({completed: false}, jasmine.any(Function));
 			expect(model.update).toHaveBeenCalledWith(21, {completed: true}, jasmine.any(Function));
 		});
 
@@ -198,6 +199,7 @@ describe('controller', function () {
 			setUpModel([todo]);
 
 			subject.setView('');
+			view.trigger('toggleAll', {completed: true});
 			//view.trigger('toggleAll', {completed: true});
 			//subject.toggleAll(false);
 			
