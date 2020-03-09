@@ -194,20 +194,24 @@ describe('controller', function () {
 
 		it('should update the view', function () {
 			// TODO: write test
-			var todo = {title: 'my todo', completed: false};
+			var todo = {title: 'my todo', completed: true};
 			setUpModel([todo]);
 
 			subject.setView('');
-			view.trigger('toggleAll', {completed: true});
+			//view.trigger('toggleAll', {completed: true});
 			//subject.toggleAll(false);
 			
 			//expect(model.read).toHaveBeenCalledWith({completed: true}, jasmine.any(Function));
-			expect(view.render).toHaveBeenCalledWith('showEntries', [{ title: 'my todo', completed: false }]);
+			//expect(view.render).toHaveBeenCalledWith('showEntries', [{ title: 'my todo', completed: false }]);
 			/*
 			expect(view.render).toHaveBeenCalledWith('toggleAll', {
 				checked: false
 			});
 			*/
+
+			/* Rewrite */
+			//expect(model.read).toHaveBeenCalledWith({completed: true}, jasmine.any(Function));
+			expect(view.render).toHaveBeenCalledWith('toggleAll', { checked: true });
 			
 		});
 	});
