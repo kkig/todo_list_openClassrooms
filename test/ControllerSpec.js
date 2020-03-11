@@ -90,20 +90,29 @@ describe('controller', function () {
 
 		it('should show active entries', function () {
 			// TODO: write test
-			var todo = {title: 'my todo', completed: false};
-			setUpModel([todo]);
+			/*
+			var todoOne = {id: 21, title: 'my todo', completed: false};
+			var todoTwo = {id: 22, title: 'my todo', completed: false};
+			setUpModel([todoOne, todoTwo]);
+			model.read({ completed: false }, jasmine.any(Function));
+			*/
 
 			subject.setView('#/active');
+			//model.update(21, {completed: true}, jasmine.any(Function));
 			//subject._updateFilterState('active');
 
+			//expect(model.getCount).toHaveBeenCalledWith(jasmine.any(Function));
+			//expect(view.show).toHaveBeenCalledWith('showEntries', [todoOne]);
 			expect(view.render).toHaveBeenCalledWith('setFilter', 'active');
 		});
 
 		it('should show completed entries', function () {
 			// TODO: write test
+			/*
 			var todo = {title: 'my todo', completed: true};
 			var todoOne = {title: 'my todo', completed: false};
 			setUpModel([todo, todoOne]);
+			*/
 
 			subject.setView('#/completed');
 			//subject._updateFilterState('completed');
@@ -190,7 +199,9 @@ describe('controller', function () {
 			
 			/* Rewrite */
 			//expect(model.read).toHaveBeenCalledWith({completed: false}, jasmine.any(Function));
-			expect(model.update).toHaveBeenCalledWith(21, {completed: true}, jasmine.any(Function));
+			expect(model.update).toHaveBeenCalledWith(
+				21, {completed: true}, jasmine.any(Function)
+			);
 		});
 
 		it('should update the view', function () {
@@ -213,7 +224,9 @@ describe('controller', function () {
 
 			/* Rewrite */
 			//expect(view.render).toHaveBeenCalledWith('toggleAll', { checked: false });
-			expect(view.render).toHaveBeenCalledWith('elementComplete', { id: 42, completed: true  });
+			expect(view.render).toHaveBeenCalledWith(
+				'elementComplete', { id: 42, completed: true  }
+			);
 		});
 	});
 
@@ -234,7 +247,9 @@ describe('controller', function () {
 
 			view.trigger('newTodo', 'a new todo');
 
-			expect(model.create).toHaveBeenCalledWith('a new todo', jasmine.any(Function));
+			expect(model.create).toHaveBeenCalledWith(
+				'a new todo', jasmine.any(Function)
+			);
 		});
 
 		it('should add a new todo to the view', function () {
